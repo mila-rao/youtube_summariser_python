@@ -93,10 +93,9 @@ class LlamaYouTubeSummarizer:
                 summary = self.summarize_chunk(chunk)
                 summaries.append(summary)
 
-            # If multiple chunks, summarize the summaries
             if len(summaries) > 1:
                 final_text = "\n".join(summaries)
-                return self.summarize_chunk(final_text)
+                return final_text
 
             return summaries[0]
 

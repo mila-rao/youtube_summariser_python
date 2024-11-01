@@ -73,16 +73,6 @@ class HuggingFaceSummarizer:
                 )
                 summaries.append(summary)
 
-            # # If multiple chunks, summarize the summaries
-            # if len(summaries) > 1:
-            #     final_summary = self.summarizer(
-            #         ' '.join(summaries),
-            #         max_length=400,
-            #         min_length=30,
-            #         do_sample=False
-            #     )[0]['summary_text']
-            #     return final_summary
-
             return summaries
 
         except Exception as e:
