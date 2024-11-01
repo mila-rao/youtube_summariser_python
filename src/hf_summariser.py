@@ -58,7 +58,7 @@ class HuggingFaceSummarizer:
             chunks.append(' '.join(current_chunk))
         return chunks
 
-    def summarize_text(self, text: str) -> Optional[str]:
+    def summarize_text(self, text: str) -> Optional[list[str]]:
         """Summarize text using HuggingFace pipeline"""
         try:
             chunks = self.chunk_text(text)
@@ -71,7 +71,7 @@ class HuggingFaceSummarizer:
                     min_length=30,
                     do_sample=False
                 )
-                summaries.append(summary[0]['summary_text'])
+                summaries.append(summary)
 
             # # If multiple chunks, summarize the summaries
             # if len(summaries) > 1:
@@ -83,7 +83,7 @@ class HuggingFaceSummarizer:
             #     )[0]['summary_text']
             #     return final_summary
 
-            return summaries[0]
+            return summaries
 
         except Exception as e:
             print(f"Error in summarization: {str(e)}")
